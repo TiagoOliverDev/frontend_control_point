@@ -17,11 +17,11 @@ type TTurnoComTotalCount = {
 };
 
 const getAll = async (page = 1, filter = ""): Promise<TTurnoComTotalCount | Error> => {
-    try {
+    try {   
         const urlRelative = `/turno?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&tipo_like=${filter}`;
 
         const { data, headers } = await API.get(urlRelative);
-
+        
         if (data) {
             return {
                 data,

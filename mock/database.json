@@ -109,5 +109,15 @@
       "id": 2,
       "tipo": "Jornada de 8h diárias"
     }
+  ],
+  "setor": [
+    {
+      "id": 1,
+      "nomeSetor": "Setor TI"
+    },
+    {
+      "id": 2,
+      "nomeSetor": "Setor RH"
+    }
   ]
 }

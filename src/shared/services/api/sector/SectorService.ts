@@ -2,26 +2,24 @@ import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
 
 // alocar essas tipagems dentro de @types e importar
-export interface IListagemAcademias {
+export interface IListSetor {
     id: number;
-    email: string;
-    nomeAcademia: string;
+    nomeSetor: string;
 };
 
-export interface IDetalheAcademias {
+export interface IDetailsSetor {
     id: number;
-    email: string;
-    nomeAcademia: string;
+    nomeSetor: string;
 };
 
-type TAcademiasComTotalCount = {
-    data: IListagemAcademias[];
+type TSetorComTotalCount = {
+    data: IListSetor[];
     totalCount: number;
 };
 
-const getAll = async (page = 1, filter = ""): Promise<TAcademiasComTotalCount | Error> => {
+const getAll = async (page = 1, filter = ""): Promise<TSetorComTotalCount | Error> => {
     try {
-        const urlRelative = `/academias?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeAcademia_like=${filter}`;
+        const urlRelative = `/setor?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeSetor_like=${filter}`;
 
         const { data, headers } = await API.get(urlRelative);
 
@@ -38,9 +36,9 @@ const getAll = async (page = 1, filter = ""): Promise<TAcademiasComTotalCount | 
     };
 };
 
-const getById = async (id: number): Promise<IDetalheAcademias | Error> => {
+const getById = async (id: number): Promise<IDetailsSetor | Error> => {
     try {
-        const urlRelative = `/academias/${id}`;
+        const urlRelative = `/setor/${id}`;
 
         const { data } = await API.get(urlRelative);
 
@@ -56,10 +54,10 @@ const getById = async (id: number): Promise<IDetalheAcademias | Error> => {
     };
 };
 
-const create = async (dados: Omit<IDetalheAcademias, "id">): Promise<number | Error> => {
+const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error> => {
     try {
 
-        const { data } = await API.post<IDetalheAcademias>("/academias", dados);
+        const { data } = await API.post<IDetailsSetor>("/setor", dados);
 
         if (data) {
             return data.id;
@@ -72,9 +70,9 @@ const create = async (dados: Omit<IDetalheAcademias, "id">): Promise<number | Er
     };
 };
 
-const updateById = async (id: number, dados: IDetalheAcademias): Promise<void | Error> => {
+const updateById = async (id: number, dados: IDetailsSetor): Promise<void | Error> => {
     try {
-        await API.put(`/academias/${id}`, dados);
+        await API.put(`/setor/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -83,7 +81,7 @@ const updateById = async (id: number, dados: IDetalheAcademias): Promise<void | 
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/academias/${id}`);
+        await API.delete(`/setor/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");

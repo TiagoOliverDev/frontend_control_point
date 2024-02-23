@@ -9,13 +9,13 @@ import { DetailTools } from "../../shared/components";
 import * as yup from "yup";
 
 interface IFormData {
-    email: string;
-    nomeAcademia: string;
+    // email: string;
+    nomeSetor: string;
 };
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    email: yup.string().required().email(),
-    nomeAcademia: yup.string().required().min(3),
+    // email: yup.string().required().email(),
+    nomeSetor: yup.string().required().min(3),
 });
 
 export const SectorDetails: React.FC = () => {
@@ -41,15 +41,15 @@ export const SectorDetails: React.FC = () => {
                         alert(result.message);
                         navigate("/academy");
                     } else {
-                        setName(result.nomeAcademia);
+                        setName(result.nomeSetor);
                         formRef.current?.setData(result);
                     };
                 });
         } else {
 
             formRef.current?.setData({
-                email: "",
-                nomeAcademia: "",
+                // email: "",
+                nomeSetor: "",
             });
         };
     }, [id]);
@@ -170,7 +170,7 @@ export const SectorDetails: React.FC = () => {
                                     fullWidth
                                     disabled={isLoading}
                                     label="Nome do setor"
-                                    name="nomeAcademia"
+                                    name="nomeSetor"
                                     onChange={e => setName(e.target.value)} />
 
                             </Grid>

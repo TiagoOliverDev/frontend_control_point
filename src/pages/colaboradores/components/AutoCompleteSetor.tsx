@@ -15,7 +15,7 @@ interface IAutoCompleteSetorProps {
 };
 
 export const AutoCompleteSetor: React.FC<IAutoCompleteSetorProps> = ({ isExternalLoading = false }) => {
-    const { fieldName, registerField, defaultValue, clearError, error } = useField("academia");
+    const { fieldName, registerField, defaultValue, clearError, error } = useField("setor");
     const { debounce } = useDebounce();
 
     const [selectedId, setSelectedId] = useState<number | undefined>(defaultValue);
@@ -47,7 +47,7 @@ export const AutoCompleteSetor: React.FC<IAutoCompleteSetorProps> = ({ isExterna
                     } else {
                         console.log(result);
 
-                        setOptions(result.data.map(academia => ({ id: academia.id, label: academia.nomeAcademia })));
+                        setOptions(result.data.map(setor => ({ id: setor.id, label: setor.nomeSetor })));
                     };
                 });
         });
