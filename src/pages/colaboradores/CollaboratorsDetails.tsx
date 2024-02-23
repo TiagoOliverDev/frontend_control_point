@@ -11,15 +11,19 @@ import { DetailTools } from "../../shared/components";
 import * as yup from "yup";
 
 interface IFormData {
-    email: string;
-    academia: number;
     nomeCompleto: string;
+    matricula: number;
+    email: string;
+    setor: number;
+    turno: number;
 };
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    academia: yup.number().required(),
-    email: yup.string().required().email(),
     nomeCompleto: yup.string().required().min(3),
+    matricula: yup.number().required(),
+    email: yup.string().required().email(),
+    setor: yup.number().required(),
+    turno: yup.number().required(),
 });
 
 export const CollaboratorsDetails: React.FC = () => {
@@ -52,9 +56,11 @@ export const CollaboratorsDetails: React.FC = () => {
         } else {
 
             formRef.current?.setData({
-                email: "",
                 nomeCompleto: "",
-                academia: undefined
+                matricula: undefined,
+                email: "",
+                setor: undefined,
+                turno: undefined,
 
             });
         };

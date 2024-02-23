@@ -91,6 +91,7 @@ export const ListCollaborators: React.FC = () => {
                             <TableCell>E-Mail</TableCell>
                             <TableCell>Matrícula</TableCell>
                             <TableCell>Jornada de trabalho</TableCell>
+                            <TableCell>Setor</TableCell>
                             <TableCell>Ações</TableCell>
                         </TableRow>
 
@@ -101,8 +102,9 @@ export const ListCollaborators: React.FC = () => {
                             <TableRow key={row.id}>
                                 <TableCell>{row.nomeCompleto}</TableCell>
                                 <TableCell>{row.email}</TableCell>
-                                <TableCell>{row.email}</TableCell>
-                                <TableCell>{row.academia}</TableCell>
+                                <TableCell>{row.matricula}</TableCell>
+                                <TableCell>{row.turno}</TableCell>
+                                <TableCell>{row.setor}</TableCell>
                                 <TableCell>
                                     <IconButton size="small" onClick={() => handleDelete(row.id)}>
                                         <DeleteForeverIcon />
