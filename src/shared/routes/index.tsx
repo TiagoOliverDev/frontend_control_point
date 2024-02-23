@@ -12,7 +12,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 
 import { useAppDrawerContext } from "../contexts";
-
+    
 import { Dashboard, ListCollaborators, CollaboratorsDetails, ListSectors, SectorDetails, Reports, Ponto } from "../../pages";
 
 export const AppRoutes = () => {
@@ -56,7 +56,7 @@ export const AppRoutes = () => {
 
         ]);
     }, [setDrawerOption]);
-
+                                
     return (
         <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -65,7 +65,7 @@ export const AppRoutes = () => {
 
             <Route path="/collaborators" element={<ListCollaborators />} />
             <Route path="/persons/details/:id" element={<CollaboratorsDetails />} />
-            
+
             <Route path="/sectors" element={<ListSectors />} />
             <Route path="/sector/details/:id" element={<SectorDetails />} />
 

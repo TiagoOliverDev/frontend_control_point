@@ -3,16 +3,20 @@ import { API } from "../axiosConfig";
 
 export interface IListagemCollaborator {
     id: number;
-    email: string;
-    academia: number;
     nomeCompleto: string;
+    matricula: number;
+    email: string;
+    setor: number;
+    turno: number;
 };
 
 export interface IDetaisCollaborator {
     id: number;
-    email: string;
-    academia: number;
     nomeCompleto: string;
+    matricula: number;
+    email: string;
+    setor: number;
+    turno: number;
 };
 
 type TCollaboratorComTotalCount = {
@@ -22,7 +26,7 @@ type TCollaboratorComTotalCount = {
 
 const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount | Error> => {
     try {
-        const urlRelative = `/pessoas?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
+        const urlRelative = `/colaboradores?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
 
         const { data, headers } = await API.get(urlRelative);
 
@@ -41,7 +45,7 @@ const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount
 
 const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
     try {
-        const urlRelative = `/pessoas/${id}`;
+        const urlRelative = `/colaboradores/${id}`;
 
         const { data } = await API.get(urlRelative);
 
@@ -60,7 +64,7 @@ const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
 const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | Error> => {
     try {
 
-        const { data } = await API.post<IDetaisCollaborator>("/pessoas", dados);
+        const { data } = await API.post<IDetaisCollaborator>("/colaboradores", dados);
 
         if (data) {
             return data.id;
@@ -75,7 +79,7 @@ const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | 
 
 const updateById = async (id: number, dados: IDetaisCollaborator): Promise<void | Error> => {
     try {
-        await API.put(`/pessoas/${id}`, dados);
+        await API.put(`/colaboradores/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -84,7 +88,7 @@ const updateById = async (id: number, dados: IDetaisCollaborator): Promise<void 
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/pessoas/${id}`);
+        await API.delete(`/colaboradores/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");

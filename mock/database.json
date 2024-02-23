@@ -100,7 +100,7 @@
       "id": 7
     }
   ],
-  "jornadas": [
+  "turno": [
     {
       "id": 1,
       "tipo": "Jornada de 6h corridas"
@@ -108,6 +108,54 @@
     {
       "id": 2,
       "tipo": "Jornada de 8h diárias"
+    }
+  ],
+  "setor": [
+    {
+      "id": 1,
+      "nomeSetor": "Setor TI"
+    },
+    {
+      "id": 2,
+      "nomeSetor": "Setor RH"
+    },
+    {
+      "id": 3,
+      "nomeSetor": "Setor Developer"
+    }
+  ],
+  "colaboradores": [
+    {
+      "id": 1,
+      "turno": 1,
+      "setor": 2,
+      "email": "jackson@teste.com",
+      "matricula": 12312312,
+      "nomeCompleto": "Jackson"
+    },
+    {
+      "id": 2,
+      "turno": 2,
+      "setor": 1,
+      "email": "jackson@teste.com",
+      "matricula": 12312312,
+      "nomeCompleto": "Tiago"
+    },
+    {
+      "id": 3,
+      "nomeCompleto": "Sabrina",
+      "matricula": "12312312",
+      "email": "jackson@teste.com",
+      "setor": 1,
+      "turno": 1
+    },
+    {
+      "turno": 1,
+      "setor": 1,
+      "email": "paulloholiveira77@gmail.com",
+      "matricula": 2312313123,
+      "nomeCompleto": "Tiago Oliveira",
+      "id": 4
     }
   ]
 }

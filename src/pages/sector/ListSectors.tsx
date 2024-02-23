@@ -97,8 +97,8 @@ export const ListSectors: React.FC = () => {
 
                         {rows.map(row => (
                             <TableRow key={row.id}>
-                                <TableCell>{row.nomeAcademia}</TableCell>
-                                <TableCell>{row.email}</TableCell>
+                                <TableCell>{row.nomeSetor}</TableCell>
+                                <TableCell>{row.nomeSetor}</TableCell>
                                 <TableCell>
                                     <IconButton size="small" onClick={() => handleDelete(row.id)}>
                                         <DeleteForeverIcon />
