@@ -1,26 +1,24 @@
 import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
 
-export interface IListagemAcademias {
+export interface IListTurno {
     id: number;
-    email: string;
-    nomeAcademia: string;
+    tipo: string;
 };
 
-export interface IDetalheAcademias {
+export interface IDetailsTurno{
     id: number;
-    email: string;
-    nomeAcademia: string;
+    tipo: string;
 };
 
-type TAcademiasComTotalCount = {
-    data: IListagemAcademias[];
+type TTurnoComTotalCount = {
+    data: IListTurno[];
     totalCount: number;
 };
 
-const getAll = async (page = 1, filter = ""): Promise<TAcademiasComTotalCount | Error> => {
+const getAll = async (page = 1, filter = ""): Promise<TTurnoComTotalCount | Error> => {
     try {
-        const urlRelative = `/academias?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeAcademia_like=${filter}`;
+        const urlRelative = `/turno?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&tipo_like=${filter}`;
 
         const { data, headers } = await API.get(urlRelative);
 
@@ -37,9 +35,9 @@ const getAll = async (page = 1, filter = ""): Promise<TAcademiasComTotalCount | 
     };
 };
 
-const getById = async (id: number): Promise<IDetalheAcademias | Error> => {
+const getById = async (id: number): Promise<IDetailsTurno | Error> => {
     try {
-        const urlRelative = `/academias/${id}`;
+        const urlRelative = `/turno/${id}`;
 
         const { data } = await API.get(urlRelative);
 
@@ -55,10 +53,10 @@ const getById = async (id: number): Promise<IDetalheAcademias | Error> => {
     };
 };
 
-const create = async (dados: Omit<IDetalheAcademias, "id">): Promise<number | Error> => {
+const create = async (dados: Omit<IDetailsTurno, "id">): Promise<number | Error> => {
     try {
 
-        const { data } = await API.post<IDetalheAcademias>("/academias", dados);
+        const { data } = await API.post<IDetailsTurno>("/turno", dados);
 
         if (data) {
             return data.id;
@@ -71,9 +69,9 @@ const create = async (dados: Omit<IDetalheAcademias, "id">): Promise<number | Er
     };
 };
 
-const updateById = async (id: number, dados: IDetalheAcademias): Promise<void | Error> => {
+const updateById = async (id: number, dados: IDetailsTurno): Promise<void | Error> => {
     try {
-        await API.put(`/academias/${id}`, dados);
+        await API.put(`/turno/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -82,14 +80,14 @@ const updateById = async (id: number, dados: IDetalheAcademias): Promise<void | 
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/academias/${id}`);
+        await API.delete(`/turno/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");
     };
 };
 
-export const JornadaService = {
+export const TurnoService = {
     getAll,
     getById,
     create,

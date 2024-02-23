@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 
-import { SectorService } from "../../../shared/services/api/sector/SectorService"; 
+import { TurnoService } from "../../../shared/services/api/turno/turnoService"; 
 import { useDebounce } from "../../../shared/hooks";
 import { useField } from "@unform/core";
 
@@ -15,7 +15,7 @@ interface IAutoCompleteTurnoProps {
 };
 
 export const AutoCompleteTurno: React.FC<IAutoCompleteTurnoProps> = ({ isExternalLoading = false }) => {
-    const { fieldName, registerField, defaultValue, clearError, error } = useField("academia");
+    const { fieldName, registerField, defaultValue, clearError, error } = useField("turno");
     const { debounce } = useDebounce();
 
     const [selectedId, setSelectedId] = useState<number | undefined>(defaultValue);
@@ -37,7 +37,7 @@ export const AutoCompleteTurno: React.FC<IAutoCompleteTurnoProps> = ({ isExterna
         setIsLoading(true);
 
         debounce(() => {
-            SectorService.getAll(1, busca)
+            TurnoService.getAll(1, busca)
                 .then((result) => {
                     setIsLoading(false);
 
@@ -47,7 +47,7 @@ export const AutoCompleteTurno: React.FC<IAutoCompleteTurnoProps> = ({ isExterna
                     } else {
                         console.log(result);
 
-                        setOptions(result.data.map(academia => ({ id: academia.id, label: academia.nomeAcademia })));
+                        setOptions(result.data.map(turno => ({ id: turno.id, label: turno.tipo })));
                     };
                 });
         });

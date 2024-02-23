@@ -100,7 +100,7 @@
       "id": 7
     }
   ],
-  "jornadas": [
+  "turno": [
     {
       "id": 1,
       "tipo": "Jornada de 6h corridas"
