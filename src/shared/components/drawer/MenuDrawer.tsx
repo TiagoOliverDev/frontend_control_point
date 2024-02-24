@@ -15,8 +15,9 @@ import {
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
-import { useAppDrawerContext, useAppThemeContext } from "../../contexts";
+import { useAppDrawerContext, useAppThemeContext, useAuthContext } from "../../contexts";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 
 interface IMenuLateralProps {
     children: React.ReactNode;
@@ -53,6 +54,8 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ to, icon, label, onClick }
 
 export const MenuDrawer: React.FC<IMenuLateralProps> = ({ children }) => {
     const { toggleTheme } = useAppThemeContext();
+    const { logout } = useAuthContext();
+
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -95,6 +98,14 @@ export const MenuDrawer: React.FC<IMenuLateralProps> = ({ children }) => {
                                     </Icon>
                                 </ListItemIcon>
                                 <ListItemText primary={"Alterar tema"} />
+                            </ListItemButton>
+                            <ListItemButton onClick={logout}>
+                                <ListItemIcon>
+                                    <Icon>
+                                        <Logout />
+                                    </Icon>
+                                </ListItemIcon>
+                                <ListItemText primary={"Sair"} />
                             </ListItemButton>
                         </List>
                     </Box>
