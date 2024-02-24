@@ -1,9 +1,11 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react"
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
+
 import { AuthService } from "../services/api/auth/AuthService";
 
+
 interface IAuthCOntextData {
-    login: (email: string, password: string  )=> Promise<string | void>
     isAuthenticated: boolean;
+    login: (email: string, password: string) => Promise<string | void>
     logout: () => void; // não precisa ser Promise pois não vai se conectar com o back
 }
 
@@ -14,6 +16,7 @@ interface IAuthProvideProps{
 const AuthContext = createContext({} as IAuthCOntextData ) // injetando as props de IAuthCOntextData no context
 
 const LOCAL_STORAGE_KEY_ACCESS_TOKEN = 'APP_ACCESS_TOKEN'
+
 
 export const AuthProvider: React.FC<IAuthProvideProps> = ({ children }) => {
     const [accessToken, setAccessToken] = useState<string>()
@@ -44,16 +47,19 @@ export const AuthProvider: React.FC<IAuthProvideProps> = ({ children }) => {
     const handleLogout = useCallback(() => {
         localStorage.removeItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN)
         setAccessToken(undefined)
-        
     }, []);
     
-    const isAuthenticated = useMemo(() => accessToken !== undefined, [accessToken])
+    const isAuthenticated = useMemo(() => !!accessToken, [accessToken])
 
 
     return (
         // Funções passadas em contexto obrigatoriamente tem que usar o useCallback para não prejudicar o desempenho
-        <AuthContext.Provider value={{ login: handleLogin, isAuthenticated, logout: handleLogout }}>
+        <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
             { children }
         </AuthContext.Provider>
     )
 }
+
+export const useAuthContext = () => useContext(AuthContext);
+
+
