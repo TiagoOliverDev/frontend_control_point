@@ -147,7 +147,7 @@ export const SectorDetails: React.FC = () => {
             }
         >
 
-            <UForm ref={formRef} onSubmit={handleSave}>
+            <UForm placeholder={'Cadasto de setor'} ref={formRef} onSubmit={handleSave}>
                 <Box m={1} display={"flex"} flexDirection={"column"} component={Paper} variant="outlined">
 
                     <Grid container direction={"column"} padding={2} spacing={2}>
@@ -170,6 +170,7 @@ export const SectorDetails: React.FC = () => {
                                     fullWidth
                                     disabled={isLoading}
                                     label="Nome do setor"
+                                    placeholder="Digite o nome do setor"
                                     name="nomeSetor"
                                     onChange={e => setName(e.target.value)} />
 

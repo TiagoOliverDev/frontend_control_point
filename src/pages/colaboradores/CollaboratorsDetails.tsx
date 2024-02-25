@@ -158,7 +158,7 @@ export const CollaboratorsDetails: React.FC = () => {
             }
         >
 
-        <UForm placeholder={'teste'} ref={formRef} onSubmit={handleSave}>
+        <UForm placeholder={'Cadastro de colaborador'} ref={formRef} onSubmit={handleSave}>
             <Box m={1} display={"flex"} flexDirection={"column"} component={Paper} variant="outlined">
 
                 <Grid container direction={"column"} padding={2} spacing={2}>
