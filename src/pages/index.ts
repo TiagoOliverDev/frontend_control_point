@@ -6,7 +6,7 @@ export * from "./reports/Reports";
 export * from "./ponto/Ponto";
 export * from "./sector/ListSectors";
 export * from "./sector/SectorDetails";
-
+export * from "./register/Register";
 
 
 
