@@ -34,6 +34,8 @@ export const CollaboratorsDetails: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState('');
+    const [matricula, setMatricula] = useState('');
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
         if (id !== "new") {
@@ -180,7 +182,7 @@ export const CollaboratorsDetails: React.FC = () => {
                             <UTexField
                                 fullWidth
                                 disabled={isLoading}
-                                label="Nome competo"
+                                label="Nome completo"
                                 name="nomeCompleto"
                                 onChange={e => setName(e.target.value)} 
                             />
@@ -199,7 +201,7 @@ export const CollaboratorsDetails: React.FC = () => {
                                 disabled={isLoading}
                                 label="Matrícula"
                                 name="matricula"
-                                onChange={e => setName(e.target.value)} />
+                                onChange={e => setMatricula(e.target.value)} />
 
                         </Grid>
                     </Grid>
@@ -211,8 +213,8 @@ export const CollaboratorsDetails: React.FC = () => {
                                 fullWidth
                                 disabled={isLoading}
                                 label="E-mail"
-                                name="email" />
-
+                                name="email" 
+                                onChange={e => setEmail(e.target.value)} />
                         </Grid>
                     </Grid>
 
