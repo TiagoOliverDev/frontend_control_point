@@ -17,8 +17,11 @@ export const Ponto = () => {
                 <DetailTools
                     showButtonNew={false}
                     showButtonDelete={false}
-                    showButtonBack={false}
+                    showButtonBack={true}
                     showButtonSave={false}
+                    showButtonEnter={true}
+                    showButtonPause={true}
+                    showButtonEndJourney={true}
                 />)} >
 
                 <>
