@@ -1,32 +1,30 @@
 import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
 
-export interface IListagemCollaborator {
+export interface IListAdmin {
     id: number;
     nomeCompleto: string;
     matricula: string;
     email: string;
     password: string;
-    confirmPassword: string;
 };
 
-export interface IDetaisCollaborator {
+export interface IDetaisAdmin {
     id: number;
     nomeCompleto: string;
     matricula: string;
     email: string;
     password: string;
-    confirmPassword: string;
 };
 
 type TCollaboratorComTotalCount = {
-    data: IListagemCollaborator[];
+    data: IListAdmin[];
     totalCount: number;
 };
 
 const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount | Error> => {
     try {
-        const urlRelative = `/colaboradores?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
+        const urlRelative = `/cadastroAdmin?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
 
         const { data, headers } = await API.get(urlRelative);
 
@@ -43,10 +41,10 @@ const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount
     };
 };
 
-const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
+const getById = async (id: number): Promise<IDetaisAdmin | Error> => {
     try {
-        const urlRelative = `/colaboradores/${id}`;
-
+        const urlRelative = `/cadastroAdmin/${id}`;
+        
         const { data } = await API.get(urlRelative);
 
         if (data) {
@@ -61,10 +59,11 @@ const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
     };
 };
 
-const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | Error> => {
+const create = async (dados: Omit<IDetaisAdmin, "id">): Promise<number | Error> => {
+    console.log(dados)
     try {
 
-        const { data } = await API.post<IDetaisCollaborator>("/colaboradores", dados);
+        const { data } = await API.post<IDetaisAdmin>("/cadastroAdmin", dados);
 
         if (data) {
             return data.id;
@@ -77,9 +76,9 @@ const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | 
     };
 };
 
-const updateById = async (id: number, dados: IDetaisCollaborator): Promise<void | Error> => {
+const updateById = async (id: number, dados: IDetaisAdmin): Promise<void | Error> => {
     try {
-        await API.put(`/colaboradores/${id}`, dados);
+        await API.put(`/cadastroAdmin/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -88,7 +87,7 @@ const updateById = async (id: number, dados: IDetaisCollaborator): Promise<void 
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/colaboradores/${id}`);
+        await API.delete(`/cadastroAdmin/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");
