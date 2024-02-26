@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Card, CardActions, CardContent, CircularProgress, TextField, Typography } from "@mui/material"
 import * as yup from 'yup'
-import { UForm, useUForm, IUFormErrors } from "../../shared/components/forms";
+import { UForm, useUForm, IUFormErrors, UTexField } from "../../shared/components/forms";
 
 import { RegisterAdminService } from "../../shared/services/api/registerAdmin/RegisterAdminService";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,16 +13,13 @@ interface IFormData {
     matricula: string;
     email: string;
     password: string;
-    confirmPassword: string;
 };
 
-
-const formRegisterSchema = yup.object().shape({
+const formRegisterSchema: yup.Schema<IFormData> = yup.object().shape({
     nomeCompleto: yup.string().required().min(5),
     matricula: yup.string().required().min(5),
     email: yup.string().email().required(),
     password: yup.string().required().min(5),
-    confirmPassword: yup.string().required().min(5),
 })
 
 
@@ -40,26 +37,22 @@ export const Register: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     
-    const [nameError, setNameError] = useState('');
-    const [matriculaError, setMatriculaError] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-
-    const teste = () => {
-        console.log(name)
-        console.log(matricula)
-        console.log(email)
-        console.log(password)
-        console.log(confirmPassword)
-    }
+    useEffect(() => {
+        if (id === "new") {
+            formRef.current?.setData({
+                nomeCompleto: "",
+                matricula: "",
+                email: "",
+                password: "",
+            });
+        };
+    }, [id]);
 
 
     const handleSave = (data: IFormData) => {
-
         formRegisterSchema
             .validate(data, { abortEarly: false })
             .then((datasValidated) => {
-
                 setIsLoading(true);
 
                 if (id === "new") {
@@ -92,59 +85,47 @@ export const Register: React.FC = () => {
     };
     
     return(
-        <UForm placeholder={'Cadasto de setor'} ref={formRef} onSubmit={teste}>
+        <UForm placeholder={'Cadasto admin'} ref={formRef} onSubmit={handleSave}>
             <Box width={'100vw'} height={'100vh'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
                 <Card>
                     <CardContent>
                         <Box display={'flex'} flexDirection={'column'} gap={2} width={350}>
                             <Typography variant="h6" align="center">Cadastro</Typography>
 
-                            <TextField
+                            <UTexField
                                 fullWidth
                                 type="text"
                                 label='Nome completo'
-                                value={name}
+                                name="nomeCompleto"
                                 disabled={isLoading}
-                                error={!!nameError}
-                                helperText={nameError}
-                                onKeyDown={() => setNameError('')}
                                 onChange={e => setName(e.target.value)}
                             />
 
-                            <TextField
+                            <UTexField
                                 fullWidth
                                 type="text"
                                 label='Matrícula'
+                                name="matricula"
                                 placeholder="Ex: 7032024"
-                                value={matricula}
                                 disabled={isLoading}
-                                error={!!matriculaError}
-                                helperText={matriculaError}
-                                onKeyDown={() => setMatriculaError('')}
                                 onChange={e => setMatricula(e.target.value)}
                             />
 
-                            <TextField
+                            <UTexField
                                 fullWidth
                                 type="email"
                                 label='Email'
-                                value={email}
+                                name="email"
                                 disabled={isLoading}
-                                error={!!emailError}
-                                helperText={emailError}
-                                onKeyDown={() => setEmailError('')}
                                 onChange={e => setEmail(e.target.value)}
                             />
 
-                            <TextField
+                            <UTexField
                                 fullWidth
                                 label='Senha'
                                 type="password"
-                                value={password}
+                                name="password"
                                 disabled={isLoading}
-                                error={!!passwordError}
-                                helperText={passwordError}
-                                onKeyDown={() => setPasswordError('')}
                                 onChange={e => setPassword(e.target.value)}
                             />
 
@@ -152,7 +133,6 @@ export const Register: React.FC = () => {
                                 fullWidth
                                 label='Confirmar senha'
                                 type="password"
-                                value={confirmPassword}
                                 disabled={isLoading}
                                 onChange={e => setConfirmPassword(e.target.value)}
                             />
