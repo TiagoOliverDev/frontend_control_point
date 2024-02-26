@@ -2,20 +2,16 @@ import { Box, Button, Card, CardActions, CardContent, CircularProgress, TextFiel
 import { useAuthContext } from "../../contexts";
 import { useState } from "react";
 import * as yup from 'yup'
-import { Password } from "@mui/icons-material";
-import { error } from "console";
+
 
 const loginSchema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required().min(5),
 })
 
-interface ILoginProps{
-    children: React.ReactNode;
-}
 
-export const Login: React.FC<ILoginProps> = ({ children }) => {
-    const { isAuthenticated, login } = useAuthContext();
+export const Login: React.FC = () => {
+    const { login } = useAuthContext();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -49,12 +45,6 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
             })
     }
     
-    // se estiver autenticado
-    if (isAuthenticated) return (
-        <>{children}</>
-    )
-
-    // se não, mostra a tela de login.
     return(
         <Box width={'100vw'} height={'100vh'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
             
@@ -86,6 +76,9 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                             onKeyDown={() => setPasswordError('')}
                             onChange={e => setPassword(e.target.value)}
                         />
+
+                        <Typography variant="body2" align="center">*Ainda não tem uma conta? <a href="/register" style={{color: '#0066cc', textDecoration: 'none'}}>Clique aqui!</a></Typography>
+
                     </Box>
                 
                 </CardContent>
