@@ -90,7 +90,7 @@ export const Register: React.FC = () => {
                 <Card>
                     <CardContent>
                         <Box display={'flex'} flexDirection={'column'} gap={2} width={350}>
-                            <Typography variant="h6" align="center">Cadastro</Typography>
+                            <Typography variant="h6" align="center">Cadastro ADMIN</Typography>
 
                             <UTexField
                                 fullWidth
