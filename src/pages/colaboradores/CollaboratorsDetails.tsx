@@ -86,11 +86,11 @@ export const CollaboratorsDetails: React.FC = () => {
                             if (result instanceof Error) {
                                 alert(result.message);
                             } else {
-
+                                
                                 if (isSaveAndClose()) {
                                     navigate("/persons");
                                 } else {
-                                    navigate(`/persons/details/${result}`);
+                                    navigate(`/persons`);
                                 };
                             };
                         });

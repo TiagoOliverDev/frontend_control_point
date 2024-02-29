@@ -39,7 +39,7 @@ export const AppRoutes = () => {
             },
             {
                 icon: <PeopleIcon />,
-                path: "/collaborators",
+                path: "/persons",
                 label: "Cadastrar colaborador",
             },
             {
@@ -63,7 +63,7 @@ export const AppRoutes = () => {
 
             <Route path="/" element={<Dashboard />} />
 
-            <Route path="/collaborators" element={<ListCollaborators />} />
+            <Route path="/persons" element={<ListCollaborators />} />
             <Route path="/persons/details/:id" element={<CollaboratorsDetails />} />
 
             <Route path="/sectors" element={<ListSectors />} />
@@ -73,7 +73,7 @@ export const AppRoutes = () => {
 
             <Route path="/point" element={<Ponto />} />
 
-            <Route path="*" element={<Navigate to={"/login"} />} />
+            <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
     );
 };

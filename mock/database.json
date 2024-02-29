@@ -124,26 +124,46 @@
       "nomeSetor": "Setor Developer"
     },
     {
-      "id": 4,
-      "nomeSetor": "Setor de db"
+      "nomeSetor": "eeee",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "nomeSetor": "setor teste 2"
+    },
+    {
+      "nomeSetor": "2323",
+      "id": 9
+    },
+    {
+      "nomeSetor": "teste 33333",
+      "id": 10
+    },
+    {
+      "nomeSetor": "e3e3e3e3",
+      "id": 11
+    },
+    {
+      "nomeSetor": "eeqeqwe",
+      "id": 12
+    },
+    {
+      "nomeSetor": "´~p~p´~p",
+      "id": 13
+    },
+    {
+      "nomeSetor": "~~p~p~p´~p",
+      "id": 14
     }
   ],
   "colaboradores": [
     {
-      "id": 1,
-      "turno": 1,
-      "setor": 2,
-      "email": "jackson@teste.com",
-      "matricula": 12312312,
-      "nomeCompleto": "Jackson"
-    },
-    {
       "id": 2,
-      "turno": 2,
-      "setor": 1,
-      "email": "jackson@teste.com",
+      "nomeCompleto": "Tiago 234",
       "matricula": 12312312,
-      "nomeCompleto": "Tiago"
+      "email": "jackson@teste.com",
+      "setor": 1,
+      "turno": 2
     },
     {
       "id": 3,
@@ -176,6 +196,22 @@
       "matricula": 123123131,
       "nomeCompleto": "kratos da zn",
       "id": 7
+    },
+    {
+      "turno": 2,
+      "setor": 1,
+      "email": "paulotiago138@gmail.com",
+      "matricula": 23123123,
+      "nomeCompleto": "setor teste",
+      "id": 8
+    },
+    {
+      "turno": 1,
+      "setor": 2,
+      "email": "paulotiago138@gmail.com",
+      "matricula": 1434234234,
+      "nomeCompleto": "setor teste",
+      "id": 9
     }
   ],
   "cadastroAdmin": [
