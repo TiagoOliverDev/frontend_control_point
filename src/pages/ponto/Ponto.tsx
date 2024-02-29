@@ -143,6 +143,7 @@ export const Ponto = () => {
                     whenCilickingButtonEnter={handleSave}
                     whenCilickingButtonPause={handlePause}
                     whenCilickingButtonPauseEsporadica={handlePause}
+                    whenCilickingButtonBack={() => navigate("/")}
                 />)} >
                 
                 <TableContainer component={Paper} variant="outlined" sx={{ mx: 1, width: "auto" }}>
