@@ -4,6 +4,11 @@ import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CheckIcon from '@mui/icons-material/Check';
+import PauseIcon from '@mui/icons-material/Pause';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 interface IDetailToolsProps {
     textButtonNew?: string;
@@ -13,6 +18,11 @@ interface IDetailToolsProps {
     showButtonDelete?: boolean;
     showButtonSave?: boolean;
     showButtonSaveAndClose?: boolean;
+    
+    showButtonEnter?: boolean;
+    showButtonPause?:  boolean;
+    showButtonPauseEsporadica?:  boolean;
+    showButtonEndJourney?: boolean;
 
     showButtonNewLoading?: boolean;
     showButtonBackLoading?: boolean;
@@ -20,11 +30,20 @@ interface IDetailToolsProps {
     showButtonSaveLoading?: boolean;
     showButtonSaveAndCloseLoading?: boolean;
 
+    showButtonEnterLoading?: boolean;
+    showButtonPauseLoading?:  boolean;
+    showButtonPauseEsporadicaLoading?:  boolean;
+    showButtonEndJourneyLoading?: boolean;
+
     whenCilickingButtonNew?: () => void;
     whenCilickingButtonBack?: () => void;
     whenCilickingButtonDelete?: () => void;
     whenCilickingButtonSave?: () => void;
     whenCilickingButtonSaveAndClose?: () => void;
+    whenCilickingButtonEnter?: () => void;
+    whenCilickingButtonPause?: () => void;
+    whenCilickingButtonPauseEsporadica?: () => void;
+    whenCilickingButtonEndJourney?: () => void;
 };
 
 export const DetailTools: React.FC<IDetailToolsProps> = ({
@@ -36,18 +55,34 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     showButtonNew = true,
     showButtonBack = true,
 
+    showButtonEnter = false,
+    showButtonPause = false,
+    showButtonPauseEsporadica = false,
+    showButtonEndJourney = false,
+    
     showButtonSaveLoading = false,
     showButtonSaveAndCloseLoading = false,
     showButtonDeleteLoading = false,
     showButtonNewLoading = false,
     showButtonBackLoading = false,
 
+    showButtonEnterLoading = false,
+    showButtonPauseLoading = false,
+    showButtonPauseEsporadicaLoading = false,
+    showButtonEndJourneyLoading = false,
+    
 
     whenCilickingButtonNew,
     whenCilickingButtonBack,
     whenCilickingButtonDelete,
     whenCilickingButtonSave,
     whenCilickingButtonSaveAndClose,
+    
+    whenCilickingButtonEnter,
+    whenCilickingButtonPause,
+    whenCilickingButtonPauseEsporadica,
+    whenCilickingButtonEndJourney,
+
 }) => {
 
 
@@ -161,6 +196,66 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
 
             {showButtonBackLoading && (
                 <Skeleton width={109} height={60} />
+            )}
+
+
+            {(showButtonEnter && !showButtonEnterLoading) && (
+                    <Button
+                        variant="contained"
+                        color="success"
+                        disableElevation
+                        onClick={whenCilickingButtonEnter}
+                        startIcon={ <Icon> <CheckIcon /> </Icon> }
+                    >
+                        <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                            Entrada
+                        </Typography>
+                    </Button>
+            )}
+
+
+            {(showButtonPause && !showButtonPauseLoading) && (
+                    <Button
+                        variant="contained"
+                        color="info"
+                        disableElevation
+                        onClick={whenCilickingButtonPause}
+                        startIcon={ <Icon> <RestaurantIcon /> </Icon> }
+                    >
+                        <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                            Pausa almoço
+                        </Typography>
+                    </Button>
+            )}
+
+
+            {(showButtonPauseEsporadica && !showButtonPauseEsporadicaLoading) && (
+                    <Button
+                        variant="contained"
+                        color="info"
+                        disableElevation
+                        onClick={whenCilickingButtonPause}
+                        startIcon={ <Icon> <SelfImprovementIcon /> </Icon> }
+                    >
+                        <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                            Saída esporádica
+                        </Typography>
+                    </Button>
+            )}
+
+
+            {(showButtonEndJourney && !showButtonEndJourneyLoading) && (
+                    <Button
+                        variant="contained"
+                        color="error"
+                        disableElevation
+                        onClick={whenCilickingButtonEndJourney}
+                        startIcon={ <Icon> <DirectionsRunIcon /> </Icon> }
+                    >
+                        <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                            Finalizar expediente
+                        </Typography>
+                    </Button>
             )}
         </Box>
     );

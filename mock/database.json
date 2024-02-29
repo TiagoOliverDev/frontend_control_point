@@ -160,6 +160,217 @@
       "matricula": 2312313123,
       "nomeCompleto": "Tiago Oliveira",
       "id": 4
+    },
+    {
+      "turno": 1,
+      "setor": 1,
+      "email": "milenalopessales@gmail.com",
+      "matricula": 123123123,
+      "nomeCompleto": "Milena Lopes Pereira de Sales",
+      "id": 6
+    },
+    {
+      "turno": 2,
+      "setor": 1,
+      "email": "tiago2023@gmail.com",
+      "matricula": 123123131,
+      "nomeCompleto": "kratos da zn",
+      "id": 7
+    }
+  ],
+  "cadastroAdmin": [
+    {
+      "id": 1,
+      "nomeCompleto": "Jackson",
+      "matricula": 12312312,
+      "email": "jackson@teste.com",
+      "password": "teste123"
+    },
+    {
+      "nomeCompleto": "Tiago Oliveira",
+      "matricula": "123124",
+      "email": "tiago2023@gmail.com",
+      "password": "@qweasd123",
+      "id": 2
+    },
+    {
+      "nomeCompleto": "Tiago Oliveira",
+      "matricula": "123124",
+      "email": "tiago2023@gmail.com",
+      "password": "@qweasd123",
+      "id": 3
+    },
+    {
+      "nomeCompleto": "Paulo Tiago Lopes de Oliveira",
+      "matricula": "12312313",
+      "email": "tiago2024@gmail.com",
+      "password": "@qweasd123",
+      "id": 4
+    },
+    {
+      "nomeCompleto": "Sou admin dev",
+      "matricula": "1231313",
+      "email": "adm2024@gmail.com",
+      "password": "@qweasd123",
+      "id": 5
+    }
+  ],
+  "registerPoint": [
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:32:32",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 1
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:32:33",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 2
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:32:34",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 3
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:34:41",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 4
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:35:32",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 5
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:35:50",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 6
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:38:56",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 7
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:39:00",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 8
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:41:28",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 9
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:41:31",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 10
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "26/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:41:36",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 11
+    },
+    {
+      "idCollaborator": 4,
+      "tipoCadastro": "Comum",
+      "data": "28/2/2024",
+      "nomeCompleto": "Evento não iniciado",
+      "entrada": "23:13:43",
+      "pausaAlmoco": "Evento não iniciado",
+      "retornoAlmoco": "Evento não iniciado",
+      "saidaEsporadica": "Evento não iniciado",
+      "retornoEsporadica": "Evento não iniciado",
+      "fimExpediente": "Evento não iniciado",
+      "id": 12
     }
   ],
   "auth": {

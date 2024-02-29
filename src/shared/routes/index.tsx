@@ -44,7 +44,7 @@ export const AppRoutes = () => {
             },
             {
                 icon: <PendingActionsIcon />,
-                path: "/ponto",
+                path: "/point",
                 label: "Ponto",
             }, 
             {
@@ -71,7 +71,7 @@ export const AppRoutes = () => {
 
             <Route path="/reports" element={<Reports />} />
 
-            <Route path="/ponto" element={<Ponto />} />
+            <Route path="/point" element={<Ponto />} />
 
             <Route path="*" element={<Navigate to={"/login"} />} />
         </Routes>
