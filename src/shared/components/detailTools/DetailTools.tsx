@@ -7,6 +7,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CheckIcon from '@mui/icons-material/Check';
 import PauseIcon from '@mui/icons-material/Pause';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 interface IDetailToolsProps {
     textButtonNew?: string;
@@ -19,6 +21,7 @@ interface IDetailToolsProps {
     
     showButtonEnter?: boolean;
     showButtonPause?:  boolean;
+    showButtonPauseEsporadica?:  boolean;
     showButtonEndJourney?: boolean;
 
     showButtonNewLoading?: boolean;
@@ -29,6 +32,7 @@ interface IDetailToolsProps {
 
     showButtonEnterLoading?: boolean;
     showButtonPauseLoading?:  boolean;
+    showButtonPauseEsporadicaLoading?:  boolean;
     showButtonEndJourneyLoading?: boolean;
 
     whenCilickingButtonNew?: () => void;
@@ -38,6 +42,7 @@ interface IDetailToolsProps {
     whenCilickingButtonSaveAndClose?: () => void;
     whenCilickingButtonEnter?: () => void;
     whenCilickingButtonPause?: () => void;
+    whenCilickingButtonPauseEsporadica?: () => void;
     whenCilickingButtonEndJourney?: () => void;
 };
 
@@ -52,6 +57,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
 
     showButtonEnter = false,
     showButtonPause = false,
+    showButtonPauseEsporadica = false,
     showButtonEndJourney = false,
     
     showButtonSaveLoading = false,
@@ -62,6 +68,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
 
     showButtonEnterLoading = false,
     showButtonPauseLoading = false,
+    showButtonPauseEsporadicaLoading = false,
     showButtonEndJourneyLoading = false,
     
 
@@ -73,6 +80,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     
     whenCilickingButtonEnter,
     whenCilickingButtonPause,
+    whenCilickingButtonPauseEsporadica,
     whenCilickingButtonEndJourney,
 
 }) => {
@@ -212,10 +220,25 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                         color="info"
                         disableElevation
                         onClick={whenCilickingButtonPause}
-                        startIcon={ <Icon> <PauseIcon /> </Icon> }
+                        startIcon={ <Icon> <RestaurantIcon /> </Icon> }
                     >
                         <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
-                            Pausa
+                            Pausa almoço
+                        </Typography>
+                    </Button>
+            )}
+
+
+            {(showButtonPauseEsporadica && !showButtonPauseEsporadicaLoading) && (
+                    <Button
+                        variant="contained"
+                        color="info"
+                        disableElevation
+                        onClick={whenCilickingButtonPause}
+                        startIcon={ <Icon> <SelfImprovementIcon /> </Icon> }
+                    >
+                        <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                            Saída esporádica
                         </Typography>
                     </Button>
             )}
@@ -230,7 +253,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                         startIcon={ <Icon> <DirectionsRunIcon /> </Icon> }
                     >
                         <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
-                            Finalizar jornada
+                            Finalizar expediente
                         </Typography>
                     </Button>
             )}
