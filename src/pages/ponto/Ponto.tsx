@@ -1,23 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 
 
-import { LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Pagination, IconButton } from "@mui/material";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Pagination} from "@mui/material";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import { DetailTools } from "../../shared/components";
 import { LayoutBasePages } from "../../shared/layouts";
 
-import { UTexField, UForm } from "../../shared/components/forms"; 
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
-
-import { IListCollaborators } from "../../@types/IListCollaborators";
+import { IListsPoint } from "../../@types/IListPoints"; 
 import { useDebounce } from "../../shared/hooks";
 import { Enviroment } from "../../shared/environment"; 
-import { CollaboratorService } from "../../shared/services/api/collaborator/CollaboratorService"; 
-import * as yup from "yup";
+import { PointService } from "../../shared/services/api/point/PointService"; 
 
 interface IFormData {
+    idCollaborator: number;
+    tipoCadastro: string;
     data: string,
     nomeCompleto: string;
     entrada: string;
@@ -28,27 +25,20 @@ interface IFormData {
     fimExpediente: string;
 };
 
-const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    data: yup.string().required(),
-    nomeCompleto: yup.string().required(),
-    entrada: yup.string().required(),
-    pausaAlmoco: yup.string().required(),
-    retornoAlmoco: yup.string().required(),
-    saidaEsporadica: yup.string().required(),
-    retornoEsporadica: yup.string().required(),
-    fimExpediente: yup.string().required(),
-});
 
 
 export const Ponto = () => {
+    // const { id = "new" } = useParams<"id">();
+    const [idEntrada, setIdEntrada] = useState<number>();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const { debounce } = useDebounce();
 
-    const [rows, setRows] = useState<IListCollaborators[]>([]);
+    const [rows, setRows] = useState<IListsPoint[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [totalCount, setTotalCount] = useState(0);
-    const navigate = useNavigate()
+    
+    const navigate = useNavigate();
 
     const busca = useMemo(() => {
         return searchParams.get("busca") || "";
@@ -57,13 +47,27 @@ export const Ponto = () => {
     const page = useMemo(() => {
         return Number(searchParams.get("page") || "1");
     }, [searchParams]);
+    
 
-    useEffect(() => {
+    const getCurrentDate = () => {
+        const date = new Date();
+        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        return formattedDate
+    };
+
+    const getCurrentTime = () => {
+        const now = new Date();
+        const formattedTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        return formattedTime
+    };
+
+
+      useEffect(() => {
 
         setIsLoading(true);
 
         debounce(() => {
-            CollaboratorService.getAll(page, busca)
+            PointService.getAll(page, busca)
                 .then((result) => {
                     setIsLoading(false);
 
@@ -80,6 +84,48 @@ export const Ponto = () => {
         });
     }, [busca, page]);
 
+
+    const handleSave = () => {        
+        try { 
+            const dados: Omit<IListsPoint, "id"> = {
+                idCollaborator: 4,
+                tipoCadastro: "Comum",
+                data: getCurrentDate(),
+                nomeCompleto: 'Evento não iniciado',
+                entrada: getCurrentTime(), 
+                pausaAlmoco: 'Evento não iniciado',
+                retornoAlmoco: 'Evento não iniciado',
+                saidaEsporadica: 'Evento não iniciado',
+                retornoEsporadica: 'Evento não iniciado',
+                fimExpediente: 'Evento não iniciado'
+            };
+
+            PointService.create(dados)
+            .then(result => {
+                if (result instanceof Error) {
+                    console.error("Erro ao criar registro:", result);
+                } else {
+                    setIdEntrada(result);
+                    navigate("/point");
+                    console.log("Registro criado com sucesso. ID:", result);
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao criar registro:", error);
+            });
+          } catch (error) {
+            console.error("Erro ao criar registro:", error);
+        }
+    };
+
+
+    const handlePause = () => {
+        // Fazer quando o back estiver pronto
+        console.log('id: ', idEntrada)
+    };
+
+
+
     return (
         <LayoutBasePages
             title="Registro de ponto"
@@ -92,6 +138,11 @@ export const Ponto = () => {
                     showButtonEnter={true}
                     showButtonPause={true}
                     showButtonEndJourney={true}
+                    showButtonPauseEsporadica={true}
+
+                    whenCilickingButtonEnter={handleSave}
+                    whenCilickingButtonPause={handlePause}
+                    whenCilickingButtonPauseEsporadica={handlePause}
                 />)} >
                 
                 <TableContainer component={Paper} variant="outlined" sx={{ mx: 1, width: "auto" }}>
@@ -114,21 +165,14 @@ export const Ponto = () => {
 
                     {rows.map(row => (
                         <TableRow key={row.id}>
+                            <TableCell>{row.data}</TableCell>
                             <TableCell>{row.nomeCompleto}</TableCell>
-                            <TableCell>{row.nomeCompleto}</TableCell>
-                            <TableCell>{row.email}</TableCell>
-                            <TableCell>{row.matricula}</TableCell>
-                            <TableCell>{row.turno}</TableCell>
-                            <TableCell>{row.setor}</TableCell>
-                            <TableCell>
-                                <IconButton size="small">
-                                    <DeleteForeverIcon />
-                                </IconButton>
-                                <IconButton size="small" >
-                                    <EditIcon />
-                                </IconButton>
-                            </TableCell>
-                            <TableCell>{row.setor}</TableCell>
+                            <TableCell>{row.entrada}</TableCell>
+                            <TableCell>{row.pausaAlmoco}</TableCell>
+                            <TableCell>{row.retornoAlmoco}</TableCell>
+                            <TableCell>{row.saidaEsporadica}</TableCell>
+                            <TableCell>{row.retornoEsporadica}</TableCell>
+                            <TableCell>{row.fimExpediente}</TableCell>
                         </TableRow>
                     ))}
 
