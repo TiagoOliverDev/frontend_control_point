@@ -73,7 +73,7 @@ export const AppRoutes = () => {
 
             <Route path="/point" element={<Ponto />} />
 
-            <Route path="*" element={<Navigate to={"/login"} />} />
+            <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
     );
 };

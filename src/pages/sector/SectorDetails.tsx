@@ -39,7 +39,7 @@ export const SectorDetails: React.FC = () => {
 
                     if (result instanceof Error) {
                         alert(result.message);
-                        navigate("/academy");
+                        navigate(`/sector`);
                     } else {
                         setName(result.nomeSetor);
                         formRef.current?.setData(result);
@@ -74,9 +74,9 @@ export const SectorDetails: React.FC = () => {
                             } else {
 
                                 if (isSaveAndClose()) {
-                                    navigate("/academy");
+                                    navigate("/sectors");
                                 } else {
-                                    navigate(`/academy/details/${result}`);
+                                    navigate(`/sectors/details/${result}`);
                                 };
                             };
                         });
@@ -93,7 +93,7 @@ export const SectorDetails: React.FC = () => {
                             } else {
 
                                 if (isSaveAndClose()) {
-                                    navigate("/academy");
+                                    navigate("/sectors");
                                 };
                             };
                         });
@@ -122,7 +122,7 @@ export const SectorDetails: React.FC = () => {
                         alert(result.message);
                     } else {
                         alert("Registro apagado com sucesso");
-                        navigate('/academy');
+                        navigate('/sectors');
                     };
                 });
         };
@@ -130,18 +130,18 @@ export const SectorDetails: React.FC = () => {
 
     return (
         <LayoutBasePages
-            title={"Cadastrar novo setor 2"}
+            title={"Cadastrar novo setor"}
             toobar={
                 <DetailTools
-                    textButtonNew="Nova"
+                    textButtonNew="Novo"
                     showButtonSaveAndClose
                     showButtonSave={id !== "new"}
                     showButtonDelete={id !== "new"}
 
-                    whenCilickingButtonBack={() => navigate("/colaboradores_logado")}
+                    whenCilickingButtonBack={() => navigate("/sectors")}
                     whenCilickingButtonDelete={() => handleDelete(Number(id))}
                     whenCilickingButtonSave={save}
-                    whenCilickingButtonNew={() => navigate("/colaboradores_logados")}
+                    whenCilickingButtonNew={() => navigate("/sector/details/new")}
                     whenCilickingButtonSaveAndClose={saveAndClose}
                 />
             }
