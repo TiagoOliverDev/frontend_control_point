@@ -53,7 +53,6 @@ export const ListSectors: React.FC = () => {
         });
     }, [busca, page]);
 
-    console.log('row,', rows)
 
     const handleDelete = (id: number) => {
         if (window.confirm("Realmente deseja excluir esse resgistro?")) {
