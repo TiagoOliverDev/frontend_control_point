@@ -23,6 +23,7 @@ interface IDetailToolsProps {
     showButtonPause?:  boolean;
     showButtonPauseEsporadica?:  boolean;
     showButtonEndJourney?: boolean;
+    showButtonRetorno?:  boolean;
 
     showButtonNewLoading?: boolean;
     showButtonBackLoading?: boolean;
@@ -34,6 +35,7 @@ interface IDetailToolsProps {
     showButtonPauseLoading?:  boolean;
     showButtonPauseEsporadicaLoading?:  boolean;
     showButtonEndJourneyLoading?: boolean;
+    showButtonRetornoLoading?:  boolean;
 
     whenCilickingButtonNew?: () => void;
     whenCilickingButtonBack?: () => void;
@@ -44,6 +46,7 @@ interface IDetailToolsProps {
     whenCilickingButtonPause?: () => void;
     whenCilickingButtonPauseEsporadica?: () => void;
     whenCilickingButtonEndJourney?: () => void;
+    whenCilickingButtonRetorno?: () => void;
 };
 
 export const DetailTools: React.FC<IDetailToolsProps> = ({
@@ -59,6 +62,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     showButtonPause = false,
     showButtonPauseEsporadica = false,
     showButtonEndJourney = false,
+    showButtonRetorno = false,
     
     showButtonSaveLoading = false,
     showButtonSaveAndCloseLoading = false,
@@ -70,7 +74,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     showButtonPauseLoading = false,
     showButtonPauseEsporadicaLoading = false,
     showButtonEndJourneyLoading = false,
-    
+    showButtonRetornoLoading = false,
 
     whenCilickingButtonNew,
     whenCilickingButtonBack,
@@ -82,6 +86,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     whenCilickingButtonPause,
     whenCilickingButtonPauseEsporadica,
     whenCilickingButtonEndJourney,
+    whenCilickingButtonRetorno,
 
 }) => {
 
@@ -234,13 +239,27 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                         variant="contained"
                         color="info"
                         disableElevation
-                        onClick={whenCilickingButtonPause}
+                        onClick={whenCilickingButtonPauseEsporadica}
                         startIcon={ <Icon> <SelfImprovementIcon /> </Icon> }
                     >
                         <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
                             Saída esporádica
                         </Typography>
                     </Button>
+            )}
+
+            {(showButtonRetorno && !showButtonRetornoLoading) && (
+                        <Button
+                            variant="contained"
+                            color="success"
+                            disableElevation
+                            onClick={whenCilickingButtonRetorno}
+                            startIcon={ <Icon> <CheckIcon /> </Icon> }
+                        >
+                            <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
+                                Retorno
+                            </Typography>
+                        </Button>
             )}
 
 
@@ -257,6 +276,8 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
                         </Typography>
                     </Button>
             )}
+
+
         </Box>
     );
 };
