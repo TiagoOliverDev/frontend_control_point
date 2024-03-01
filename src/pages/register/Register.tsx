@@ -9,17 +9,19 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 interface IFormData {
-    nomeCompleto: string;
-    matricula: string;
+    name: string;
     email: string;
     password: string;
+    matricula: string;
+    tipo_permissao: number;
 };
 
 const formRegisterSchema: yup.Schema<IFormData> = yup.object().shape({
-    nomeCompleto: yup.string().required().min(5),
-    matricula: yup.string().required().min(5),
+    name: yup.string().required().min(5),
     email: yup.string().email().required(),
     password: yup.string().required().min(5),
+    matricula: yup.string().required().min(5),
+    tipo_permissao: yup.number().required(),
 })
 
 
@@ -40,10 +42,11 @@ export const Register: React.FC = () => {
     useEffect(() => {
         if (id === "new") {
             formRef.current?.setData({
-                nomeCompleto: "",
-                matricula: "",
+                name: "",
                 email: "",
                 password: "",
+                matricula: "",
+                tipo_permissao: "",
             });
         };
     }, [id]);
@@ -96,7 +99,7 @@ export const Register: React.FC = () => {
                                 fullWidth
                                 type="text"
                                 label='Nome completo'
-                                name="nomeCompleto"
+                                name="name"
                                 disabled={isLoading}
                                 onChange={e => setName(e.target.value)}
                             />
@@ -135,6 +138,14 @@ export const Register: React.FC = () => {
                                 type="password"
                                 disabled={isLoading}
                                 onChange={e => setConfirmPassword(e.target.value)}
+                            />
+
+                            <UTexField
+                                fullWidth
+                                label='Tipo permissão'
+                                type="tipo_permissao"
+                                name="tipo_permissao"
+                                disabled={isLoading}
                             />
 
                             <Typography variant="body2" align="center">*Já possui uma conta? <a href="/login" style={{color: '#0066cc', textDecoration: 'none'}}>Clique aqui!</a></Typography>
