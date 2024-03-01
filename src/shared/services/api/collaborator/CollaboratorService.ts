@@ -26,14 +26,14 @@ type TCollaboratorComTotalCount = {
 
 const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount | Error> => {
     try {
-        const urlRelative = `/colaboradores?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
+        const urlRelative = `/collaborator/list_all_collaborators?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeCompleto_like=${filter}`;
 
-        const { data, headers } = await API.get(urlRelative);
+        const { data } = await API.get(urlRelative);
 
-        if (data) {
+        if (data && data.collaborators) {
             return {
-                data,
-                totalCount: Number(headers['x-total-count'] || Enviroment.LIMITE_DE_LINHAS), // envia o Hrader com totalCount na minha api
+                data: data.collaborators[0], 
+                totalCount: data.collaborators[0].length, 
             };
         };
         return new Error("Erro ao listar os registros.");
