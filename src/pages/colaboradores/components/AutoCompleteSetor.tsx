@@ -50,7 +50,7 @@ export const AutoCompleteSetor: React.FC<IAutoCompleteSetorProps> = ({ isExterna
                 });
         });
     }, [busca]);
-
+    
     const autCompleteSelectedOption = useMemo(() => {
         if (!selectedId) return null;
 

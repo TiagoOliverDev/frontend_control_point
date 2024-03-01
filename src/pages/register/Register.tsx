@@ -11,7 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 interface IFormData {
     name: string;
     email: string;
-    password: string;
+    senha: string;
     matricula: string;
     tipo_permissao: number;
 };
@@ -19,7 +19,7 @@ interface IFormData {
 const formRegisterSchema: yup.Schema<IFormData> = yup.object().shape({
     name: yup.string().required().min(5),
     email: yup.string().email().required(),
-    password: yup.string().required().min(5),
+    senha: yup.string().required().min(5),
     matricula: yup.string().required().min(5),
     tipo_permissao: yup.number().required(),
 })
@@ -44,7 +44,7 @@ export const Register: React.FC = () => {
             formRef.current?.setData({
                 name: "",
                 email: "",
-                password: "",
+                senha: "",
                 matricula: "",
                 tipo_permissao: "",
             });
@@ -127,17 +127,9 @@ export const Register: React.FC = () => {
                                 fullWidth
                                 label='Senha'
                                 type="password"
-                                name="password"
+                                name="senha"
                                 disabled={isLoading}
                                 onChange={e => setPassword(e.target.value)}
-                            />
-
-                            <TextField
-                                fullWidth
-                                label='Confirmar senha'
-                                type="password"
-                                disabled={isLoading}
-                                onChange={e => setConfirmPassword(e.target.value)}
                             />
 
                             <UTexField

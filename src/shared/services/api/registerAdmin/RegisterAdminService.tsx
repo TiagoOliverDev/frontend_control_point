@@ -1,6 +1,6 @@
 import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
-// import dotenv from 'dotenv';
+import axios from 'axios';
 
 export interface IListAdmin {
     id: number;
@@ -14,7 +14,7 @@ export interface IDetaisAdmin {
     id: number;
     name: string;
     email: string;
-    password: string;
+    senha: string;
     matricula: string;
     tipo_permissao: number;
 };
@@ -24,8 +24,6 @@ type TCollaboratorComTotalCount = {
     totalCount: number;
 };
 
-// dotenv.config();
-// const API_HOST = process.env.API_HOST;
 
 const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount | Error> => {
     try {

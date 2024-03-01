@@ -56,7 +56,7 @@ export const CollaboratorsDetails: React.FC = () => {
                         alert(result.message);
                         navigate("/persons");
                     } else {
-                        console.log(result)
+                       
                         setName(result.nomeCompleto);
                         setMatricula(result.matricula)
                         setEmail(result.email)
@@ -239,9 +239,9 @@ export const CollaboratorsDetails: React.FC = () => {
                         <Grid item xs={12} md={6} lg={4} xl={2}>
 
                             <UTexField
-                                type="password"
                                 fullWidth
                                 disabled={isLoading}
+                                type="password"
                                 label="Senha"
                                 value={senha}
                                 name="senha"
