@@ -41,6 +41,7 @@ export const SectorDetails: React.FC = () => {
                         alert(result.message);
                         navigate(`/sector`);
                     } else {
+                        console.log('data:', result)
                         setName(result.nomeSetor);
                         formRef.current?.setData(result);
                     };
@@ -172,6 +173,7 @@ export const SectorDetails: React.FC = () => {
                                     label="Nome do setor"
                                     placeholder="Digite o nome do setor"
                                     name="nomeSetor"
+                                    value={name} 
                                     onChange={e => setName(e.target.value)} />
 
                             </Grid>
