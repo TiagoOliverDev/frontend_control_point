@@ -14,6 +14,7 @@ interface IFormData {
     nomeCompleto: string;
     matricula: string;
     email: string;
+    senha: string;
     setor: string;
     turno: string;
 };
@@ -22,6 +23,7 @@ const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
     nomeCompleto: yup.string().required().min(3),
     matricula: yup.string().required(),
     email: yup.string().required().email(),
+    senha: yup.string().required(),
     setor: yup.string().required(),
     turno: yup.string().required(),
 });
@@ -38,6 +40,7 @@ export const CollaboratorsDetails: React.FC = () => {
     const [email, setEmail] = useState('');
     const [setor, setSetor] = useState('');
     const [turno, setTurno] = useState('');
+    const [senha, setSenha] = useState('');
 
     useEffect(() => {
         if (id !== "new") {
@@ -68,6 +71,7 @@ export const CollaboratorsDetails: React.FC = () => {
                 nomeCompleto: "",
                 matricula: undefined,
                 email: "",
+                senha: "",
                 setor: undefined,
                 turno: undefined,
 
@@ -76,6 +80,7 @@ export const CollaboratorsDetails: React.FC = () => {
     }, [id]);
 
     const handleSave = (data: IFormData) => {
+        console.log('data: ', data)
 
         formValidationSchema
             .validate(data, { abortEarly: false })
@@ -225,6 +230,23 @@ export const CollaboratorsDetails: React.FC = () => {
                                 value={email}
                                 name="email" 
                                 onChange={e => setEmail(e.target.value)} />
+                        </Grid>
+                    </Grid>
+
+                                        
+                    <Grid container item direction={"row"} spacing={2}>
+
+                        <Grid item xs={12} md={6} lg={4} xl={2}>
+
+                            <UTexField
+                                type="password"
+                                fullWidth
+                                disabled={isLoading}
+                                label="Senha"
+                                value={senha}
+                                name="senha"
+                                onChange={e => setSenha(e.target.value)} />
+
                         </Grid>
                     </Grid>
 

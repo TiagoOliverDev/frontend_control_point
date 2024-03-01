@@ -6,6 +6,7 @@ export interface IListagemCollaborator {
     nomeCompleto: string;
     matricula: string;
     email: string;
+    senha: string;
     setor: string;
     turno: string;
 };
@@ -15,6 +16,7 @@ export interface IDetaisCollaborator {
     nomeCompleto: string;
     matricula: string;
     email: string;
+    senha: string;
     setor: string;
     turno: string;
 };
@@ -64,7 +66,7 @@ const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
 const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | Error> => {
     try {
 
-        const { data } = await API.post<IDetaisCollaborator>("/register_collaborator", dados);
+        const { data } = await API.post<IDetaisCollaborator>("/auth/register", dados);
 
         if (data) {
             return data.id;
