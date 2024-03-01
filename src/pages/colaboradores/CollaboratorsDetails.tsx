@@ -12,18 +12,18 @@ import * as yup from "yup";
 
 interface IFormData {
     nomeCompleto: string;
-    matricula: number;
+    matricula: string;
     email: string;
-    setor: number;
-    turno: number;
+    setor: string;
+    turno: string;
 };
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
     nomeCompleto: yup.string().required().min(3),
-    matricula: yup.number().required(),
+    matricula: yup.string().required(),
     email: yup.string().required().email(),
-    setor: yup.number().required(),
-    turno: yup.number().required(),
+    setor: yup.string().required(),
+    turno: yup.string().required(),
 });
 
 export const CollaboratorsDetails: React.FC = () => {
@@ -36,6 +36,8 @@ export const CollaboratorsDetails: React.FC = () => {
     const [name, setName] = useState('');
     const [matricula, setMatricula] = useState('');
     const [email, setEmail] = useState('');
+    const [setor, setSetor] = useState('');
+    const [turno, setTurno] = useState('');
 
     useEffect(() => {
         if (id !== "new") {
@@ -51,7 +53,12 @@ export const CollaboratorsDetails: React.FC = () => {
                         alert(result.message);
                         navigate("/persons");
                     } else {
+                        console.log(result)
                         setName(result.nomeCompleto);
+                        setMatricula(result.matricula)
+                        setEmail(result.email)
+                        setSetor(result.setor)
+                        setTurno(result.turno)
                         formRef.current?.setData(result);
                     };
                 });
@@ -183,6 +190,7 @@ export const CollaboratorsDetails: React.FC = () => {
                                 fullWidth
                                 disabled={isLoading}
                                 label="Nome completo"
+                                value={name}
                                 name="nomeCompleto"
                                 onChange={e => setName(e.target.value)} 
                             />
@@ -196,10 +204,11 @@ export const CollaboratorsDetails: React.FC = () => {
                         <Grid item xs={12} md={6} lg={4} xl={2}>
 
                             <UTexField
-                                type="number"
+                                type="text"
                                 fullWidth
                                 disabled={isLoading}
                                 label="Matrícula"
+                                value={matricula}
                                 name="matricula"
                                 onChange={e => setMatricula(e.target.value)} />
 
@@ -213,6 +222,7 @@ export const CollaboratorsDetails: React.FC = () => {
                                 fullWidth
                                 disabled={isLoading}
                                 label="E-mail"
+                                value={email}
                                 name="email" 
                                 onChange={e => setEmail(e.target.value)} />
                         </Grid>

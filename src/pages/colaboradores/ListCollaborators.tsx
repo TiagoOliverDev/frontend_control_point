@@ -44,7 +44,7 @@ export const ListCollaborators: React.FC = () => {
                         alert(result.message);
                         return;
                     } else {
-                        console.log(result);
+                        console.log(result.data);
 
                         setTotalCount(result.totalCount);
                         setRows(result.data);

@@ -1,9 +1,9 @@
 export interface IListCollaborators {
     id: number;
     nomeCompleto: string;
-    matricula: number;
+    matricula: string;
     email: string;
-    setor: number;
-    turno: number;
+    setor: string;
+    turno: string;
 };
 
