@@ -13,7 +13,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 
 import { useAppDrawerContext } from "../contexts";
     
-import { Dashboard, ListCollaborators, CollaboratorsDetails, ListSectors, SectorDetails, Reports, Ponto } from "../../pages";
+import { Dashboard, ListCollaborators, CollaboratorsDetails, ListSectors, SectorDetails, Reports, Ponto, Home } from "../../pages";
 
 export const AppRoutes = () => {
 
@@ -61,7 +61,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
 
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Home />} />
 
             <Route path="/persons" element={<ListCollaborators />} />
             <Route path="/persons/details/:id" element={<CollaboratorsDetails />} />
