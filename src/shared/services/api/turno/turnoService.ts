@@ -18,14 +18,14 @@ type TTurnoComTotalCount = {
 
 const getAll = async (page = 1, filter = ""): Promise<TTurnoComTotalCount | Error> => {
     try {   
-        const urlRelative = `/turno?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&tipo_like=${filter}`;
+        const urlRelative = `/journey/list_all_journeys?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&tipo_like=${filter}`;
 
-        const { data, headers } = await API.get(urlRelative);
+        const { data } = await API.get(urlRelative);
         
-        if (data) {
+        if (data && data.journeys) {
             return {
-                data,
-                totalCount: Number(headers['x-total-count'] || Enviroment.LIMITE_DE_LINHAS), // envia o Hrader com totalCount na minha api
+                data: data.journeys[0], 
+                totalCount: data.journeys[0].length, 
             };
         };
         return new Error("Erro ao listar os registros.");

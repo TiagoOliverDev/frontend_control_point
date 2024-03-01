@@ -45,8 +45,6 @@ export const AutoCompleteTurno: React.FC<IAutoCompleteTurnoProps> = ({ isExterna
                         alert(result.message);
                         return;
                     } else {
-                        console.log(result);
-
                         setOptions(result.data.map(turno => ({ id: turno.id, label: turno.tipo })));
                     };
                 });
