@@ -45,14 +45,12 @@ export const AutoCompleteSetor: React.FC<IAutoCompleteSetorProps> = ({ isExterna
                         alert(result.message);
                         return;
                     } else {
-                        console.log(result);
-
                         setOptions(result.data.map(setor => ({ id: setor.id, label: setor.nomeSetor })));
                     };
                 });
         });
     }, [busca]);
-
+    
     const autCompleteSelectedOption = useMemo(() => {
         if (!selectedId) return null;
 

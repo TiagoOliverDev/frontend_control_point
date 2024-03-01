@@ -1,13 +1,8 @@
 export interface IListsPoint {
-    id: number;
-    idCollaborator: number;
-    tipoCadastro: string;
-    data: string,
-    nomeCompleto: string;
-    entrada: string;
-    pausaAlmoco: string;
-    retornoAlmoco: string;
-    saidaEsporadica: string;
-    retornoEsporadica: string;
-    fimExpediente: string;
+    id: number | undefined | null | '';
+    id_usuario: number | undefined;
+    id_tipo_ponto: number;
+    nome: string | undefined;
+    tipoPonto: string | undefined;
+    dataHora: string;
 };

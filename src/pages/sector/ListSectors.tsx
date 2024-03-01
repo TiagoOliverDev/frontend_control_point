@@ -53,6 +53,7 @@ export const ListSectors: React.FC = () => {
         });
     }, [busca, page]);
 
+
     const handleDelete = (id: number) => {
         if (window.confirm("Realmente deseja excluir esse resgistro?")) {
             SectorService.deleteById(id)
@@ -85,20 +86,21 @@ export const ListSectors: React.FC = () => {
             <TableContainer component={Paper} variant="outlined" sx={{ mx: 1, width: "auto" }}>
                 <Table>
                     <TableHead>
-
                         <TableRow>
+                            <TableCell>ID</TableCell>
                             <TableCell>Setor</TableCell>
-                            <TableCell>Data de cadastro</TableCell>
+                            <TableCell>Data de Cadastro</TableCell>
+                            <TableCell>Data de Atualização</TableCell>
                             <TableCell>Ações</TableCell>
                         </TableRow>
-
                     </TableHead>
                     <TableBody>
-
                         {rows.map(row => (
                             <TableRow key={row.id}>
+                                <TableCell>{row.id}</TableCell>
                                 <TableCell>{row.nomeSetor}</TableCell>
-                                <TableCell>{row.nomeSetor}</TableCell>
+                                <TableCell>{row.created_at}</TableCell>
+                                <TableCell>{row.updated_at}</TableCell>
                                 <TableCell>
                                     <IconButton size="small" onClick={() => handleDelete(row.id)}>
                                         <DeleteForeverIcon />
@@ -109,7 +111,6 @@ export const ListSectors: React.FC = () => {
                                 </TableCell>
                             </TableRow>
                         ))}
-
                     </TableBody>
 
                     {totalCount === 0 && !isLoading && (

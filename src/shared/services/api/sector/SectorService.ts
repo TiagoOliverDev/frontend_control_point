@@ -5,6 +5,8 @@ import { API } from "../axiosConfig";
 export interface IListSetor {
     id: number;
     nomeSetor: string;
+    created_at: string;
+    updated_at: string;
 };
 
 export interface IDetailsSetor {
@@ -19,14 +21,15 @@ type TSetorComTotalCount = {
 
 const getAll = async (page = 1, filter = ""): Promise<TSetorComTotalCount | Error> => {
     try {
-        const urlRelative = `/setor?_page=${page}&_limit=${Enviroment.LIMITE_DE_LINHAS}&nomeSetor_like=${filter}`;
+        // Atualize a URL para corresponder ao endpoint da sua API Flask
+        const urlRelative = `/sector/list_all_sectors?_page=${page}&nomeSetor_like=${filter}`;
 
-        const { data, headers } = await API.get(urlRelative);
+        const { data } = await API.get(urlRelative);
 
-        if (data) {
+        if (data && data.sectors) {
             return {
-                data,
-                totalCount: Number(headers['x-total-count'] || Enviroment.LIMITE_DE_LINHAS), // envia o Hrader com totalCount na minha api
+                data: data.sectors[0], // Supondo que os setores estão no primeiro elemento do array retornado
+                totalCount: data.sectors[0].length, // Supondo que o total de setores é o tamanho do primeiro elemento do array
             };
         };
         return new Error("Erro ao listar os registros.");
@@ -36,14 +39,15 @@ const getAll = async (page = 1, filter = ""): Promise<TSetorComTotalCount | Erro
     };
 };
 
+
 const getById = async (id: number): Promise<IDetailsSetor | Error> => {
     try {
-        const urlRelative = `/setor/${id}`;
+        const urlRelative = `/sector/sector/${id}`;
 
         const { data } = await API.get(urlRelative);
 
-        if (data) {
-            return data;
+        if (data && data.sector) {
+            return data.sector[0];
         };
 
         return new Error("Erro ao  consultar o registro.");
@@ -56,8 +60,9 @@ const getById = async (id: number): Promise<IDetailsSetor | Error> => {
 
 const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error> => {
     try {
+        console.log(dados)
 
-        const { data } = await API.post<IDetailsSetor>("/setor", dados);
+        const { data } = await API.post<IDetailsSetor>("/sector/register_sector/", dados);
 
         if (data) {
             return data.id;
@@ -72,7 +77,7 @@ const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error>
 
 const updateById = async (id: number, dados: IDetailsSetor): Promise<void | Error> => {
     try {
-        await API.put(`/setor/${id}`, dados);
+        await API.put(`/sector/sector/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -81,7 +86,7 @@ const updateById = async (id: number, dados: IDetailsSetor): Promise<void | Erro
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/setor/${id}`);
+        await API.delete(`/sector/sector/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");

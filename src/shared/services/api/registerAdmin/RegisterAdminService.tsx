@@ -1,5 +1,6 @@
 import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
+import axios from 'axios';
 
 export interface IListAdmin {
     id: number;
@@ -11,16 +12,18 @@ export interface IListAdmin {
 
 export interface IDetaisAdmin {
     id: number;
-    nomeCompleto: string;
-    matricula: string;
+    name: string;
     email: string;
-    password: string;
+    senha: string;
+    matricula: string;
+    tipo_permissao: number;
 };
 
 type TCollaboratorComTotalCount = {
     data: IListAdmin[];
     totalCount: number;
 };
+
 
 const getAll = async (page = 1, filter = ""): Promise<TCollaboratorComTotalCount | Error> => {
     try {
@@ -60,10 +63,9 @@ const getById = async (id: number): Promise<IDetaisAdmin | Error> => {
 };
 
 const create = async (dados: Omit<IDetaisAdmin, "id">): Promise<number | Error> => {
-    console.log(dados)
     try {
 
-        const { data } = await API.post<IDetaisAdmin>("/cadastroAdmin", dados);
+        const { data } = await API.post<IDetaisAdmin>(`/auth/register`, dados);
 
         if (data) {
             return data.id;
