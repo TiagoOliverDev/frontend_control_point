@@ -38,8 +38,8 @@ export const AuthProvider: React.FC<IAuthProvideProps> = ({ children }) => {
         if (result instanceof Error){
             return result.message
         } else {          
-            localStorage.setItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN, JSON.stringify(result.accessToken)) // Salvando token no local storage
-            setAccessToken(result.accessToken)
+            localStorage.setItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN, JSON.stringify(result.BearerToken)) // Salvando token no local storage
+            setAccessToken(result.BearerToken)
         }
 
     }, []);
