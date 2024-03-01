@@ -9,12 +9,10 @@ import { DetailTools } from "../../shared/components";
 import * as yup from "yup";
 
 interface IFormData {
-    // email: string;
     nomeSetor: string;
 };
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    // email: yup.string().required().email(),
     nomeSetor: yup.string().required().min(3),
 });
 
@@ -41,7 +39,6 @@ export const SectorDetails: React.FC = () => {
                         alert(result.message);
                         navigate(`/sector`);
                     } else {
-                        console.log('data:', result)
                         setName(result.nomeSetor);
                         formRef.current?.setData(result);
                     };
@@ -49,7 +46,6 @@ export const SectorDetails: React.FC = () => {
         } else {
 
             formRef.current?.setData({
-                // email: "",
                 nomeSetor: "",
             });
         };

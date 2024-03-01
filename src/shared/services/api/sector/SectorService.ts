@@ -60,8 +60,9 @@ const getById = async (id: number): Promise<IDetailsSetor | Error> => {
 
 const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error> => {
     try {
+        console.log(dados)
 
-        const { data } = await API.post<IDetailsSetor>("/setor", dados);
+        const { data } = await API.post<IDetailsSetor>("/sector/register_sector/", dados);
 
         if (data) {
             return data.id;
@@ -76,7 +77,7 @@ const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error>
 
 const updateById = async (id: number, dados: IDetailsSetor): Promise<void | Error> => {
     try {
-        await API.put(`/setor/${id}`, dados);
+        await API.put(`/sector/sector/${id}`, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao atualizar o registro.");
@@ -85,7 +86,7 @@ const updateById = async (id: number, dados: IDetailsSetor): Promise<void | Erro
 
 const deleteById = async (id: number): Promise<void | Error> => {
     try {
-        await API.delete(`/setor/${id}`);
+        await API.delete(`/sector/sector/${id}`);
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");
