@@ -5,6 +5,23 @@ Front end for points system
 <hr/>
 
 
+Register
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/cadastro.png)
+
+Login
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/login.png)
+
+Collaborated created
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/cadastroColaborador.png)
+
+List all Collaborators
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/listagemColaboradores.png)
+
+Point entry
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/pontoEntrada.png)
+
+Point pause
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/pontoPausa.png)
 
 
 <hr/>
@@ -45,13 +62,19 @@ I used the following technologies:
 
 - Navigate to `cd frontend_control_point`  directory.
 
-- To install all the app dependencies on the command line run
 - ```
- yarn install or npm install
 
- git to src\shared\environment\index.ts and set API URL BACKEND in URL_BASE
+Steps for run...
 
   ``` 
+
+## Step 1: 
+
+install all the app dependencies on the command line run:
+
+yarn install or npm install
+
+got to src\shared\environment\index.ts and set API URL BACKEND in URL_BASE
 
 ## Step 2: 
 
