@@ -162,7 +162,7 @@ export const Ponto = () => {
                     whenCilickingButtonBack={() => navigate("/")}
                 />)} >
                 
-                <TableContainer component={Paper} variant="outlined" sx={{ mx: 1, width: "auto" }}>
+            <TableContainer component={Paper} variant="outlined" sx={{ mx: 1, width: "auto" }}>
                 <Table>
                     <TableHead>
 

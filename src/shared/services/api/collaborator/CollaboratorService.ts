@@ -66,7 +66,7 @@ const getById = async (id: number): Promise<IDetaisCollaborator | Error> => {
 const create = async (dados: Omit<IDetaisCollaborator, "id">): Promise<number | Error> => {
     try {
 
-        const { data } = await API.post<IDetaisCollaborator>("/auth/register", dados);
+        const { data } = await API.post<IDetaisCollaborator>("/collaborator/register_collaborator", dados);
 
         if (data) {
             return data.id;

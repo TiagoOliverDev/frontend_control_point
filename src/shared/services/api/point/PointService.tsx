@@ -2,10 +2,12 @@ import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
 
 interface IPoint {
+    id: number | undefined | null | '';
+    id_usuario: number | undefined;
+    id_tipo_ponto: number;
+    nome: string | undefined;
+    tipoPonto: string | undefined;
     dataHora: string;
-    idTipoPonto: number | string;
-    nome: string;
-    tipoPonto: string;
   }
   
 
@@ -94,6 +96,7 @@ const deleteById = async (id: number): Promise<void | Error> => {
         return new Error((error as { message: string }).message || "Erro ao deletar o registro.");
     };
 };
+
 export const PointService = {
     getAll,
     getById,
