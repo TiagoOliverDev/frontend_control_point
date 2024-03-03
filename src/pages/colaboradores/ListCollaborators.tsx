@@ -100,7 +100,7 @@ export const ListCollaborators: React.FC = () => {
 
                         {rows.map(row => (
                             <TableRow key={row.id}>
-                                <TableCell>{row.nomeCompleto}</TableCell>
+                                <TableCell>{row.nome}</TableCell>
                                 <TableCell>{row.email}</TableCell>
                                 <TableCell>{row.matricula}</TableCell>
                                 <TableCell>{row.turno}</TableCell>

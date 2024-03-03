@@ -11,7 +11,7 @@ import { DetailTools } from "../../shared/components";
 import * as yup from "yup";
 
 interface IFormData {
-    nomeCompleto: string;
+    nome: string;
     matricula: string;
     email: string;
     senha: string;
@@ -20,7 +20,7 @@ interface IFormData {
 };
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    nomeCompleto: yup.string().required().min(3),
+    nome: yup.string().required().min(3),
     matricula: yup.string().required(),
     email: yup.string().required().email(),
     senha: yup.string().required(),
@@ -57,7 +57,7 @@ export const CollaboratorsDetails: React.FC = () => {
                         navigate("/persons");
                     } else {
                        
-                        setName(result.nomeCompleto);
+                        setName(result.nome);
                         setMatricula(result.matricula)
                         setEmail(result.email)
                         setSetor(result.setor)
@@ -68,7 +68,7 @@ export const CollaboratorsDetails: React.FC = () => {
         } else {
 
             formRef.current?.setData({
-                nomeCompleto: "",
+                nome: "",
                 matricula: undefined,
                 email: "",
                 senha: "",
@@ -107,7 +107,6 @@ export const CollaboratorsDetails: React.FC = () => {
                             };
                         });
                 } else {
-
                     CollaboratorService
                         .updateById(Number(id), { id: Number(id), ...datasValidated })
                         .then((result) => {
@@ -196,7 +195,7 @@ export const CollaboratorsDetails: React.FC = () => {
                                 disabled={isLoading}
                                 label="Nome completo"
                                 value={name}
-                                name="nomeCompleto"
+                                name="nome"
                                 onChange={e => setName(e.target.value)} 
                             />
 

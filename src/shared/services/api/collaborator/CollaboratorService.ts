@@ -3,7 +3,7 @@ import { API } from "../axiosConfig";
 
 export interface IListagemCollaborator {
     id: number;
-    nomeCompleto: string;
+    nome: string;
     matricula: string;
     email: string;
     senha: string;
@@ -13,7 +13,7 @@ export interface IListagemCollaborator {
 
 export interface IDetaisCollaborator {
     id: number;
-    nomeCompleto: string;
+    nome: string;
     matricula: string;
     email: string;
     senha: string;
