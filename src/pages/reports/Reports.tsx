@@ -1,42 +1,36 @@
 import { useEffect, useState } from "react";
 
 import { Box, Grid, Card, CardContent, Typography, Button, Icon } from "@mui/material";
-import { UTexField } from "../../shared/components/forms"; 
-import SaveIcon from '@mui/icons-material/Save';
 import DownloadIcon from '@mui/icons-material/Download';
 
 import { DetailTools } from "../../shared/components";
 import { LayoutBasePages } from "../../shared/layouts";
 
-import { CollaboratorService } from "../../shared/services/api/collaborator/CollaboratorService"; 
-import { SectorService } from "../../shared/services/api/sector/SectorService"; 
+import { ReportsService } from "../../shared/services/api/reports/ReportsService";
+import { useAuthContext } from "../../shared/contexts";
+
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
+interface IListsPoint {
+    id: number | undefined | null | '';
+    id_usuario: number | undefined;
+    id_tipo_ponto: number;
+    nome: string | undefined;
+    tipoPonto: string | undefined;
+    dataHora: string;
+};
 
 
 export const Reports = () => {
 
-    const [totalCountPersons, setTotalCountPersons] = useState(0);
-    const [totalCountAcademy, setTotalCountAcademy] = useState(0);
-    const [isLoadingAcademy, setIsLoadingAcademy] = useState(true);
+    const { id_user } = useAuthContext()
+
+    const [rows, setRows] = useState<IListsPoint[]>([]);
     const [isLoadingPersons, setIsLoadingPersons] = useState(true);
 
     useEffect(() => {
-
-        setIsLoadingAcademy(true);
-        setIsLoadingPersons(true);
-
-        SectorService.getAll(1)
-            .then((result) => {
-                setIsLoadingAcademy(false);
-
-                if (result instanceof Error) {
-                    alert(result.message);
-                    return;
-                } else {
-                    setTotalCountAcademy(result.totalCount);
-                };
-            });
-
-        CollaboratorService.getAll(1)
+        ReportsService.getHistoryById(id_user)
             .then((result) => {
                 setIsLoadingPersons(false);
 
@@ -44,10 +38,35 @@ export const Reports = () => {
                     alert(result.message);
                     return;
                 } else {
-                    setTotalCountPersons(result.totalCount);
+                    setRows(result.data)
                 };
-            });
+        });
     }, []);
+
+
+    const generateHistoryPoint = () => {
+        
+        if (rows.length === 0) {
+            alert("Não há dados para gerar o PDF.");
+            return;
+        }
+    
+        const doc = new jsPDF();
+        const tableColumn = ["Data e Hora", "Nome", "Tipo de Ponto"];
+        const tableRows: any = [];
+    
+        rows.forEach(point => {
+            const pointData = [
+                point.dataHora,
+                point.nome,
+                point.tipoPonto
+            ];
+            tableRows.push(pointData);
+        });
+    
+        autoTable(doc, { head: [tableColumn], body: tableRows });
+        doc.save("historico_pontos.pdf");
+    }
 
     return (
         <LayoutBasePages
@@ -70,21 +89,12 @@ export const Reports = () => {
                                         Baixar histórico de ponto
                                     </Typography>
                                     <Box p={6} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                        {/* {isLoadingAcademy ? (
-                                            <Typography variant="h5" align="center">
-                                                Carregando...
-                                            </Typography>
-                                        ) : (
-                                            <Typography variant="h1" align="center">
-                                                {totalCountAcademy}
-                                            </Typography>
-                                        )} */}
                                     <Button
                                         style={{marginLeft: 25}}
                                         variant="contained"
                                         color="primary"
                                         disableElevation
-                                        // onClick={whenCilickingButtonSave}
+                                        onClick={generateHistoryPoint}
                                         startIcon={ <Icon> <DownloadIcon /> </Icon> }
                                     >
                                         <Typography variant="button" whiteSpace={"nowrap"} textOverflow={"ellipsis"} overflow={"hidden"}>
@@ -95,78 +105,7 @@ export const Reports = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-
-                        <Grid item xs={12} md={6} lg={4} xl={3}>
-                            <Card>
-                                <CardContent>
-                                    <Typography variant="h5" align="center">
-                                        Enviar histórico de ponto via email
-                                    </Typography>
-                                    <Box p={6} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                        {isLoadingPersons ? (
-                                            <Typography variant="h5" align="center">
-                                                Carregando...
-                                            </Typography>
-                                        ) : (
-                                            <Typography variant="h1" align="center">
-                                                {totalCountPersons}
-                                            </Typography>
-                                        )}
-                                        {/* <UTexField
-                                            fullWidth
-                                            // disabled={isLoading}
-                                            label="Digite seu email"
-                                            name="nomeCompleto"
-                                            // onChange={e => setName(e.target.value)} 
-                                        /> */}
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-
-                        <Grid item xs={12} md={6} lg={4} xl={3}>
-                            <Card>
-                                <CardContent>
-                                    <Typography variant="h5" align="center">
-                                        Horas dentro
-                                    </Typography>
-                                    <Box p={6} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                        {isLoadingAcademy ? (
-                                            <Typography variant="h5" align="center">
-                                                Carregando...
-                                            </Typography>
-                                        ) : (
-                                            <Typography variant="h1" align="center">
-                                                {totalCountAcademy}
-                                            </Typography>
-                                        )}
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-
-                        <Grid item xs={12} md={6} lg={4} xl={3}>
-                            <Card>
-                                <CardContent>
-                                    <Typography variant="h5" align="center">
-                                        Horas devedoras
-                                    </Typography>
-                                    <Box p={6} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                        {isLoadingAcademy ? (
-                                            <Typography variant="h5" align="center">
-                                                Carregando...
-                                            </Typography>
-                                        ) : (
-                                            <Typography variant="h1" align="center">
-                                                {totalCountAcademy}
-                                            </Typography>
-                                        )}
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-
-                    </Grid>
+                    </Grid>                                
                 </Grid>
             </Box>
         </LayoutBasePages>

@@ -8,6 +8,6 @@ export * from "./sector/ListSectors";
 export * from "./sector/SectorDetails";
 export * from "./register/Register";
 export * from "./home/Home";
-
+export * from "./reports/Reports"
 
 
