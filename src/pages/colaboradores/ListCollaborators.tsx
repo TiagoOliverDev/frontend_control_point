@@ -49,7 +49,7 @@ export const ListCollaborators: React.FC = () => {
                         setTotalCount(result.totalCount);
                         setRows(result.data);
                     };
-                });
+            });
         });
     }, [busca, page]);
 
