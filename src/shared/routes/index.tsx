@@ -11,13 +11,31 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 
-import { useAppDrawerContext } from "../contexts";
+import { useAppDrawerContext, useAuthContext } from "../contexts";
     
 import { Dashboard, ListCollaborators, CollaboratorsDetails, ListSectors, SectorDetails, Reports, Ponto, Home } from "../../pages";
 
-export const AppRoutes = () => {
 
+interface PrivateRouteProps {
+    children: React.ReactNode;
+    permissionType: number;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, permissionType }): React.ReactElement | null => {
+    const { type_permission } = useAuthContext();
+
+    const effectiveTypePermission = type_permission || parseInt(localStorage.getItem('TYPE_PERMISSION_USER') || '0', 10);
+
+    return effectiveTypePermission === permissionType ? (children as React.ReactElement) : <Navigate to="/" />;
+};
+
+export const AppRoutes = () => {
     const { setDrawerOption } = useAppDrawerContext();
+    // const { type_permission } = useAuthContext();
+    const type_permission = parseInt(localStorage.getItem('TYPE_PERMISSION_USER')|| '0', 10)
+    // type_permission 1 = usuário comum, type_permission 2 = usuário admin
+    const TYPE_PERMISSION = 2;
+    
 
     useEffect(() => {
         
@@ -32,16 +50,16 @@ export const AppRoutes = () => {
                 path: "/dashboard",
                 label: "Dashboard",
             },
-            {
+            ...(type_permission === TYPE_PERMISSION ? [{
                 icon: <AccountBalanceIcon />,
                 path: "/sectors",
                 label: "Cadastrar setores",
-            },
-            {
+            }] : []),
+            ...(type_permission === TYPE_PERMISSION ? [{
                 icon: <PeopleIcon />,
                 path: "/persons",
                 label: "Cadastrar colaborador",
-            },
+            }] : []),
             {
                 icon: <PendingActionsIcon />,
                 path: "/point",
@@ -52,10 +70,9 @@ export const AppRoutes = () => {
                 path: "/reports",
                 label: "Relatórios",
             },    
-      
 
         ]);
-    }, [setDrawerOption]);
+    }, [setDrawerOption, type_permission]);
                                 
     return (
         <Routes>
@@ -63,11 +80,29 @@ export const AppRoutes = () => {
 
             <Route path="/" element={<Home />} />
 
-            <Route path="/persons" element={<ListCollaborators />} />
-            <Route path="/persons/details/:id" element={<CollaboratorsDetails />} />
+            <Route path="/persons" element={
+                <PrivateRoute permissionType={TYPE_PERMISSION}>
+                    <ListCollaborators />
+                </PrivateRoute>
+            } />
 
-            <Route path="/sectors" element={<ListSectors />} />
-            <Route path="/sector/details/:id" element={<SectorDetails />} />
+            <Route path="/persons/details/:id" element={
+                <PrivateRoute permissionType={TYPE_PERMISSION}>
+                    <CollaboratorsDetails />
+                </PrivateRoute>
+            } />
+
+            <Route path="/sectors" element={
+                <PrivateRoute permissionType={TYPE_PERMISSION}>
+                    <ListSectors />
+                </PrivateRoute>
+            } />
+    
+            <Route path="/sector/details/:id" element={
+                <PrivateRoute permissionType={TYPE_PERMISSION}>
+                    <SectorDetails />
+                </PrivateRoute>
+            } />
 
             <Route path="/reports" element={<Reports />} />
 

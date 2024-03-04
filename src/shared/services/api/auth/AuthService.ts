@@ -3,6 +3,7 @@ import { API } from "../axiosConfig";
 interface IAuth {
     BearerToken: string;
     id_user: number;
+    type_permission: number;
 }
 
 
