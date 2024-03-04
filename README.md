@@ -47,7 +47,7 @@ History pdf
 - Registration and listing of sectors
 - Registration and listing of collaborators
 - Options to clock in at different times (entry, lunch, return and end of work)
-- History (under development)
+- Points history 
 - Dashboard (under development)
 
 <hr/>
