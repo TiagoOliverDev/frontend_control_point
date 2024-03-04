@@ -89,8 +89,8 @@ export const ListSectors: React.FC = () => {
                         <TableRow>
                             <TableCell>ID</TableCell>
                             <TableCell>Setor</TableCell>
-                            <TableCell>Data de Cadastro</TableCell>
-                            <TableCell>Data de Atualização</TableCell>
+                            {/* <TableCell>Data de Cadastro</TableCell>
+                            <TableCell>Data de Atualização</TableCell> */}
                             <TableCell>Ações</TableCell>
                         </TableRow>
                     </TableHead>
@@ -99,8 +99,8 @@ export const ListSectors: React.FC = () => {
                             <TableRow key={row.id}>
                                 <TableCell>{row.id}</TableCell>
                                 <TableCell>{row.nomeSetor}</TableCell>
-                                <TableCell>{row.created_at}</TableCell>
-                                <TableCell>{row.updated_at}</TableCell>
+                                {/* <TableCell>{row.created_at}</TableCell>
+                                <TableCell>{row.updated_at}</TableCell> */}
                                 <TableCell>
                                     <IconButton size="small" onClick={() => handleDelete(row.id)}>
                                         <DeleteForeverIcon />

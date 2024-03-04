@@ -1,17 +1,18 @@
-import { Enviroment } from "../../../environment";
 import { API } from "../axiosConfig";
 
 // alocar essas tipagems dentro de @types e importar
 export interface IListSetor {
     id: number;
     nomeSetor: string;
-    created_at: string;
-    updated_at: string;
+    // created_at: string;
+    // updated_at: string;
 };
 
 export interface IDetailsSetor {
     id: number;
     nomeSetor: string;
+    // created_at: string;
+    // updated_at: string;
 };
 
 type TSetorComTotalCount = {
@@ -60,9 +61,9 @@ const getById = async (id: number): Promise<IDetailsSetor | Error> => {
 
 const create = async (dados: Omit<IDetailsSetor, "id">): Promise<number | Error> => {
     try {
-        console.log(dados)
+        console.log('SECTOR:',dados)
 
-        const { data } = await API.post<IDetailsSetor>("/sector/register_sector/", dados);
+        const { data } = await API.post<IDetailsSetor>("/sector/register_sector", dados);
 
         if (data) {
             return data.id;

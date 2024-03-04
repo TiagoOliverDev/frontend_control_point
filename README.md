@@ -14,14 +14,29 @@ Login
 Collaborated created
 ![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/cadastroColaborador.png)
 
+Home user admin
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/homeAdmin.png)
+
+Home user comum
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/homeComum.png)
+
 List all Collaborators
-![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/listagemColaboradores.png)
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/homeAdmin.png)
+
+List all sectors
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/setoresList.png)
 
 Point entry
 ![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/pontoEntrada.png)
 
 Point pause
 ![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/pontoPausa.png)
+
+History
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/relatorios.png)
+
+History pdf
+![background](https://github.com/TiagoOliverDev/frontend_control_point/blob/main/images/pdfHistorico.png)
 
 
 <hr/>
@@ -56,38 +71,36 @@ I used the following technologies:
 - Choose a folder in your local machine where you want this repository to be copied
 
 - Clone this [repository](git@github.com:TiagoOliverDev/frontend_control_point.git) to your local machine 
-- ```
+
+   ```
   git clone git@github.com:TiagoOliverDev/frontend_control_point.git
   ```
 
 - Navigate to `cd frontend_control_point`  directory.
 
-- ```
-
-Steps for run...
-
-  ``` 
-
-## Step 1: 
+## Step 2: 
 
 install all the app dependencies on the command line run:
 
-yarn install or npm install
+  ```
+  yarn install or npm install
+  ```
 
 got to src\shared\environment\index.ts and set API URL BACKEND in URL_BASE
 
-## Step 2: 
-
+## Step 3: 
 
 Open folder project and open a terminal and run the following command:
 
-```bash
+  ```
+  yarn start or npm start
+  ```
+## Step 4: go to the backend repository and follow the instructions for download
 
- yarn start
-
-```
-
-
+  ```
+  https://github.com/TiagoOliverDev/backend_pontos
+  ```
+  
 <hr/>
 
 

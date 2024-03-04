@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { Box, Grid, Card, CardContent, Typography } from "@mui/material";
 
 import { DetailTools } from "../../shared/components";
@@ -17,6 +19,8 @@ export const Dashboard = () => {
     //
     const [isLoadingCollaborator, setIsLoadingCollaborator] = useState(true);
     const [isLoadingCollaboratorRegistered, setIsLoadingCollaboratorRegistered] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         
@@ -50,13 +54,15 @@ export const Dashboard = () => {
 
     return (
         <LayoutBasePages
-            title="Gestor de pontos"
+            title="Dashboard"
             toobar={(
                 <DetailTools
                     showButtonNew={false}
                     showButtonDelete={false}
-                    showButtonBack={false}
+                    showButtonBack={true}
                     showButtonSave={false}
+
+                    whenCilickingButtonBack={() => navigate("/")}
                 />)} >
             <Box width={"100%"} display={"flex"} >
                 <Grid container mx={1}>

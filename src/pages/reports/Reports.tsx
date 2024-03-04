@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { Box, Grid, Card, CardContent, Typography, Button, Icon } from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -28,6 +30,8 @@ export const Reports = () => {
 
     const [rows, setRows] = useState<IListsPoint[]>([]);
     const [isLoadingPersons, setIsLoadingPersons] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         ReportsService.getHistoryById(id_user)
@@ -75,8 +79,10 @@ export const Reports = () => {
                 <DetailTools
                     showButtonNew={false}
                     showButtonDelete={false}
-                    showButtonBack={false}
+                    showButtonBack={true}
                     showButtonSave={false}
+
+                    whenCilickingButtonBack={() => navigate("/")}
                 />)} >
             <Box width={"100%"} display={"flex"} >
                 <Grid container mx={1}>

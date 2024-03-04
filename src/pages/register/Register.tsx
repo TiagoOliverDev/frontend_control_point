@@ -138,6 +138,7 @@ export const Register: React.FC = () => {
                                 type="tipo_permissao"
                                 name="tipo_permissao"
                                 disabled={isLoading}
+                                placeholder="Digite 2 para cadastrar como ADMIN"
                             />
 
                             <Typography variant="body2" align="center">*Já possui uma conta? <a href="/login" style={{color: '#0066cc', textDecoration: 'none'}}>Clique aqui!</a></Typography>
